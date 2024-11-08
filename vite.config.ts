@@ -1,7 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import autoprefixer from 'autoprefixer'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+	base: './',
+	build: {
+		minify: true,
+		sourcemap: true,
+	},
+	server: {
+		host: '0.0.0.0',
+		port: 8888,
+		hmr: true,
+	},
+	plugins: [react()],
+	css: {
+		postcss: {
+			plugins: [autoprefixer({})],
+		},
+	},
 })
