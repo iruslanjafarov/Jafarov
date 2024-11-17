@@ -1,2 +1,5 @@
-@use './fonts';
-@use './clear';
+@use './tailwind';
+
+body {
+	background-color: #f5f5f5;
+}
