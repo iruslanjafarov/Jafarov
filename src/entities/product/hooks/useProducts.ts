@@ -9,7 +9,9 @@ const useProducts = () => {
 	}, []);
 
 	const fetchProducts = async () => {
-		const request = await fetch('/db.json');
+		const request = await fetch(
+			'https://sweet-berry-detective.glitch.me/products'
+		);
 
 		if (!request.ok) {
 			throw new Error(`Have problem with fetch, status: ${request.statusText}`);
