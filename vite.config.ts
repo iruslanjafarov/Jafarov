@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,14 +16,19 @@ export default defineConfig({
 		hmr: true,
 	},
 	plugins: [react()],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler'
-      }
-    },
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
 		postcss: {
-			plugins: [autoprefixer()],
+			plugins: [tailwindcss(), autoprefixer()],
+		},
+	},
+	resolve: {
+		alias: {
+			'@': '/src',
 		},
 	},
 });

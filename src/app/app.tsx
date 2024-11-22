@@ -1,4 +1,6 @@
-import Main from '../pages/Main/Main';
+import { lazy } from 'react';
+
+const Main = lazy(() => import('../pages/main/main'));
 
 const App = () => {
 	return <Main />;
