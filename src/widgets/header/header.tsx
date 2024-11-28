@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import Logo from '/logo.svg';
 import Button from '../button/button.tsx';
 import { useStore } from '@/app/providers/store.ts';
@@ -6,7 +6,7 @@ import { useStore } from '@/app/providers/store.ts';
 const Header: FC = () => {
 	const { type, setType, initializeType } = useStore();
 
-	useEffect(() => initializeType(), [initializeType]);
+	//useEffect(() => initializeType(), [initializeType]);
 
 	return (
 		<header>
