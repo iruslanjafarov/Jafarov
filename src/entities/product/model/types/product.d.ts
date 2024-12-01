@@ -4,6 +4,7 @@
  * This interface defines the structure of a product object, which includes essential properties
  * such as the product's path, name, price, and type.
  *
+ * @property {number} id - The unique identifier for each product.
  * @property {string} path - The URL or path to the product's image or detail page.
  * @property {string} name - The name of the product.
  * @property {number} price - The price of the product.
@@ -11,6 +12,7 @@
  */
 
 export interface IProduct {
+	id: number;
 	path: string;
 	name: string;
 	price: number;

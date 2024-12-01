@@ -10,8 +10,8 @@ import { AnimatePresence } from 'framer-motion';
  * Product
  *
  * This is a functional React component that displays a list of products, loading status, and product details.
- * It uses the `useProducts` hook to fetch the list of products from an API and manages the loading state. 
- * While the products are being fetched, a loading spinner is shown. Once the products are loaded, 
+ * It uses the `useProducts` hook to fetch the list of products from an API and manages the loading state.
+ * While the products are being fetched, a loading spinner is shown. Once the products are loaded,
  * each product's image, name, and price are displayed in a grid layout.
  *
  * @component
