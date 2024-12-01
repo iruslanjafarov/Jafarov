@@ -1,5 +1,7 @@
+import Product from '@/entities/product/ui/product';
+
 const Detail = () => {
-	return <h1>detail</h1>;
+	return <Product />;
 };
 
 export default Detail;

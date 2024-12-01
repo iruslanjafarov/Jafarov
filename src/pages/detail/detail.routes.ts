@@ -4,7 +4,7 @@ const Detail = lazy(() => import('./detail'));
 
 export const detailRoute = [
 	{
-		path: '/detail',
+		path: '/detail/:id',
 		element: Detail,
 	},
 ];

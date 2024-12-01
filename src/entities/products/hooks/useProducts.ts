@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { IProduct, IUseProducts } from '../model/types/product.ts';
+import { IProduct, IUseProducts } from '../model/types/products.ts';
 
 /**
  * useProducts
