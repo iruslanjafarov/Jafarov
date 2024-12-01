@@ -6,7 +6,9 @@ import Marquee from '@/widgets/marquee/marquee';
 const Main = () => {
 	return (
 		<>
-			<Marquee children={<h1 className='cursor-default mx-3'>Ruslan Jafarov</h1>} />
+			<Marquee
+				children={<h1 className='cursor-default mx-3'>Ruslan Jafarov</h1>}
+			/>
 			<Header />
 			<Separator />
 			<Product />

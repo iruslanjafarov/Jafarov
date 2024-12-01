@@ -1,20 +1,27 @@
 import { create } from 'zustand';
 
 interface IStore {
-	theme: 'light' | 'dark';
-	setTheme: () => void;
+	type: 'all' | 'black';
+	//setType: (type: 'all' | 'black') => void;
+	//initializeType: () => void;
 }
 
 export const useStore = create<IStore>((set) => {
-	const prefersLight = window.matchMedia(
-		'(prefers-color-scheme: light)'
-	).matches;
-
 	return {
-		theme: prefersLight ? 'light' : 'dark',
-		setTheme: () =>
-			set((state) => ({
-				theme: state.theme === 'light' ? 'dark' : 'light',
-			})),
+    type: 'all',
+    
+		//setType: (type) => {
+		//	set({ type });
+
+		//	localStorage.setItem('type', type);
+		//},
+
+		//initializeType: () => {
+		//	const type = localStorage.getItem('type') as 'all' | 'black' | null;
+
+		//	if (type) {
+		//		set({ type });
+		//	}
+		//},
 	};
 });
