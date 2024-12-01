@@ -6,7 +6,19 @@ import Container from '@/shared/container/container.tsx';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
 import { AnimatePresence } from 'framer-motion';
 
-const Product: FC = () => {
+/**
+ * Product
+ *
+ * This is a functional React component that displays a list of products, loading status, and product details.
+ * It uses the `useProducts` hook to fetch the list of products from an API and manages the loading state. 
+ * While the products are being fetched, a loading spinner is shown. Once the products are loaded, 
+ * each product's image, name, and price are displayed in a grid layout.
+ *
+ * @component
+ * @returns {JSX.Element} A JSX element representing the product list and loading spinner.
+ */
+
+const Product: FC = (): JSX.Element => {
 	const { products, loading } = useProducts();
 
 	return (

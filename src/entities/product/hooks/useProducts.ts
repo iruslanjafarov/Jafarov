@@ -1,12 +1,21 @@
 import { useState, useEffect, useCallback } from 'react';
-import { IProduct } from '@/entities/product/model/types/product.ts';
-import { useStore } from '@/app/providers/store.ts';
+import { IProduct, IUseProducts } from '../model/types/product.ts';
 
-const useProducts = () => {
+/**
+ * useProducts
+ *
+ * This hook fetches a list of products from a remote API and manages the state of the products and loading status.
+ * It initiates a request to retrieve products from the API when the component is mounted, and stores the resulting data
+ * in the `products` state. The `loading` state tracks the loading status during the request.
+ *
+ * @returns {Object} The hook's state.
+ * @returns {IProduct[]} state.products - An array of products fetched from the API.
+ * @returns {boolean} state.loading - A boolean indicating whether the request is in progress or not.
+ */
+
+const useProducts = (): IUseProducts => {
 	const [products, setProducts] = useState<IProduct[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
-
-	const { type } = useStore();
 
 	const fetchProducts = useCallback(async () => {
 		try {
@@ -18,11 +27,6 @@ const useProducts = () => {
 
 			const data = await request.json();
 
-			//const filteredData =
-			//	type === 'all'
-			//		? data
-			//		: data.filter((product: IProduct) => product.type === type);
-
 			setProducts(data || []);
 
 			setLoading(false);
@@ -31,7 +35,7 @@ const useProducts = () => {
 				error instanceof Error ? error.message : 'We have unknown error'
 			);
 		}
-	}, [type]);
+	}, []);
 
 	useEffect(() => {
 		fetchProducts();
