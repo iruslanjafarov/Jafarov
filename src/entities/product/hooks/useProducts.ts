@@ -1,6 +1,6 @@
-import { IProduct } from '@/entities/product/types/product.ts';
 import { useState, useEffect, useCallback } from 'react';
-import { useStore } from '@/app/providers/store';
+import { IProduct } from '@/entities/product/model/types/product.ts';
+import { useStore } from '@/app/providers/store.ts';
 
 const useProducts = () => {
 	const [products, setProducts] = useState<IProduct[]>([]);
@@ -18,12 +18,12 @@ const useProducts = () => {
 
 			const data = await request.json();
 
-			const filteredData =
-				type === 'all'
-					? data
-					: data.filter((product: IProduct) => product.type === type);
+			//const filteredData =
+			//	type === 'all'
+			//		? data
+			//		: data.filter((product: IProduct) => product.type === type);
 
-			setProducts(filteredData || []);
+			setProducts(data || []);
 
 			setLoading(false);
 		} catch (error) {
