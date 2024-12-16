@@ -10,6 +10,7 @@
  * @property {number} price - The price of the product.
  * @property {string} type - The type or category of the product.
  */
+
 export interface IProduct {
 	id: number;
 	path: string;
@@ -27,6 +28,7 @@ export interface IProduct {
  * @property {IProduct} product - The product object. This description assumes you're using a single product.
  * @property {boolean} loading - A boolean indicating whether the product data is still being loaded.
  */
+
 export interface IUseProduct {
 	product: IProduct | undefined;
 	loading: boolean;

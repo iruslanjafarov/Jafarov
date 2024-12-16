@@ -13,6 +13,7 @@ import { useParams } from 'react-router';
  * @returns {IProduct | undefined} state.product - A product fetched from the API or undefined if still loading.
  * @returns {boolean} state.loading - A boolean indicating whether the request is in progress or not.
  */
+
 const useProduct = (): IUseProduct => {
 	const { id } = useParams();
 
