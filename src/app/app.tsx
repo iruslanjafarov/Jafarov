@@ -3,6 +3,7 @@ import Marquee from '@/widgets/marquee/marquee';
 import Header from '@/widgets/header/header';
 import Separator from '@/shared/separator/separator';
 import { routes } from './routes/routes';
+import Footer from '@/widgets/footer/ui/footer';
 
 /**
  * The main entry point of the application.
@@ -24,6 +25,7 @@ const App = (): JSX.Element => {
 					<Route key={path} path={path} element={<Component />} />
 				))}
 			</Routes>
+			<Footer />
 		</Router>
 	);
 };
