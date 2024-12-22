@@ -1,24 +1,36 @@
 import { useState, useEffect, useCallback } from 'react';
 import { IProduct, IUseProduct } from '../model/types/product.ts';
 import { useParams } from 'react-router';
+import { useStore } from '@/app/providers/store.ts';
 
 /**
- * useProduct
+ * useProduct Hook
  *
- * This hook fetches a product from a remote API and manages the state of the product and loading status.
- * It initiates a request to retrieve a product from the API when the component is mounted, and stores the resulting data
- * in the `product` state. The `loading` state tracks the loading status during the request.
+ * A custom React hook for fetching product data from a remote API.
+ * It manages the product data and loading state, fetching the product based on the `id` from the URL parameters.
  *
- * @returns {Object} The hook's state.
- * @returns {IProduct | undefined} state.product - A product fetched from the API or undefined if still loading.
- * @returns {boolean} state.loading - A boolean indicating whether the request is in progress or not.
+ * @hook
+ * @returns {IUseProduct} Hook's state and methods.
+ * @property {IProduct | undefined} product - The product data fetched from the API, or `undefined` if not yet available.
+ * @property {boolean} loading - Indicates whether the data is being loaded.
+ *
+ * @throws {Error} Throws an error if the fetch request fails.
  */
 
 const useProduct = (): IUseProduct => {
+	const { setProduct } = useStore();
 	const { id } = useParams();
 
-	const [product, setProduct] = useState<IProduct | undefined>(undefined);
 	const [loading, setLoading] = useState<boolean>(false);
+
+	/**
+	 * Fetches product data from the API.
+	 *
+	 * This function fetches the product based on the provided `id` and updates the state accordingly.
+	 * If an error occurs, it sets `loading` to false and throws an error with a descriptive message.
+	 *
+	 * @async
+	 */
 
 	const fetchProducts = useCallback(async () => {
 		try {
@@ -39,13 +51,14 @@ const useProduct = (): IUseProduct => {
 				error instanceof Error ? error.message : 'Unknown error occurred'
 			);
 		}
-	}, [id]);
+	}, [id, setProduct]);
 
+	// Trigger the fetch on component mount or when the ID changes.
 	useEffect(() => {
 		fetchProducts();
 	}, [fetchProducts]);
 
-	return { product, loading };
+	return { loading };
 };
 
 export default useProduct;

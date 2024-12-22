@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import { useStore } from '@/app/providers/store';
+import useProducts from '@/entities/products/hooks/useProducts.ts';
 import Container from '@/shared/container/container.tsx';
 import { AnimatePresence } from 'framer-motion';
 import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
-import useProducts from '@/entities/products/hooks/useProducts.ts';
 import { Link } from 'react-router';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
 
@@ -20,7 +21,8 @@ import FadeView from '@/shared/fadeView/fadeView.tsx';
  */
 
 const Products: FC = (): JSX.Element => {
-	const { products, loading } = useProducts();
+	const { products } = useStore();
+	const { loading } = useProducts();
 
 	return (
 		<Container>

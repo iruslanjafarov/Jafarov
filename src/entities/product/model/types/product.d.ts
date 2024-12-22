@@ -23,13 +23,11 @@ export interface IProduct {
  * IUseProduct
  *
  * This interface defines the structure of the state for a product-related component or hook.
- * It includes the product object and a loading state.
+ * It includes the loading state.
  *
- * @property {IProduct} product - The product object. This description assumes you're using a single product.
  * @property {boolean} loading - A boolean indicating whether the product data is still being loaded.
  */
 
 export interface IUseProduct {
-	product: IProduct | undefined;
 	loading: boolean;
 }

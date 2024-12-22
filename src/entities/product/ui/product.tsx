@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
+import { useStore } from '@/app/providers/store.ts';
 
 /**
  * Product
@@ -19,7 +20,8 @@ import FadeView from '@/shared/fadeView/fadeView.tsx';
  */
 
 const Product: FC = (): JSX.Element => {
-	const { product, loading } = useProduct();
+	const { product } = useStore();
+	const { loading } = useProduct();
 	const { path, name, price } = product || {};
 
 	return (
