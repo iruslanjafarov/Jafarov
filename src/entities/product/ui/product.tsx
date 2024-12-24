@@ -6,6 +6,7 @@ import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
 import { useStore } from '@/app/providers/store.ts';
+import { useParams } from 'react-router';
 
 /**
  * Product
@@ -24,6 +25,11 @@ const Product: FC = (): JSX.Element => {
 	const { loading } = useProduct();
 	const { path, name, price } = product || {};
 
+	const { id } = useParams();
+	const isActive = JSON.parse(
+		localStorage.getItem(`product/${id}/favorite`) || 'false'
+	);
+
 	return (
 		<Container>
 			<AnimatePresence>
@@ -39,11 +45,16 @@ const Product: FC = (): JSX.Element => {
 			{product && !loading && (
 				<div className='flex justify-center'>
 					<FadeView>
-						<img
-							src={path}
-							alt={name}
-							className='w-full lg:w-auto lg:max-w-full h-auto mt-6 rounded-lg'
-						/>
+						<div className='relative'>
+							{isActive && (
+								<div className='absolute -top-2 -left-2 bg-red-500 w-5 h-5 rounded-full'></div>
+							)}
+							<img
+								src={path}
+								alt={name}
+								className='w-full lg:w-auto lg:max-w-full h-auto mt-6 rounded-lg'
+							/>
+						</div>
 						<div className='flex justify-between mt-6'>
 							<h2 className='text-xl truncate'>{name}</h2>
 							<h3 className='text-xl text-gray-400 text-nowrap'>{price} ₽</h3>

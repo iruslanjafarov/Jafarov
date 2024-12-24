@@ -7,6 +7,7 @@ import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
 import { Link } from 'react-router';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
+import Favorite from '@/features/favorite/ui/favorite';
 
 /**
  * Product
@@ -46,9 +47,12 @@ const Products: FC = (): JSX.Element => {
 								className='w-full sm:w-[300px] md:w-[450px] h-auto mt-6 rounded-lg'
 								loading='lazy'
 							/>
-							<div className='mt-3'>
-								<h2>{name}</h2>
-								<h3 className='text-gray-400'>{price} ₽</h3>
+							<div className='flex justify-between items-center'>
+								<div className='mt-3'>
+									<h2>{name}</h2>
+									<h3 className='text-gray-400'>{price} ₽</h3>
+								</div>
+								<Favorite id={id} />
 							</div>
 						</FadeView>
 					</Link>
