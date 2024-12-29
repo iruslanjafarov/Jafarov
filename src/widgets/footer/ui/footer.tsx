@@ -32,6 +32,7 @@ const Footer = (): JSX.Element | null => {
 	 * @property {string} alt - The alternative text for the logo image.
 	 * @property {string} [className] - Optional CSS class for additional styling.
 	 */
+
 	interface ILogos {
 		src: string;
 		alt: string;
@@ -43,6 +44,7 @@ const Footer = (): JSX.Element | null => {
 	 *
 	 * @type {ILogos[]}
 	 */
+  
 	const Logos: ILogos[] = [
 		{ src: AppleLogo, alt: 'ApplePay' },
 		{ src: GooglePay, alt: 'GooglePay' },

@@ -2,10 +2,24 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeartIcon } from '@heroicons/react/24/solid';
 
-const Favorite = ({ id }: { id: number }) => {
+/**
+ * Favorite component for toggling the favorite state of a product.
+ *
+ * @param {Object} props - The component props.
+ * @param {number} props.id - The unique identifier of the product.
+ * @returns {JSX.Element} The Favorite component.
+ */
+
+const Favorite = ({ id }: { id: number }): JSX.Element => {
 	const [isActive, setIsActive] = useState<boolean>(
 		localStorage.getItem(`product/${id}/favorite`) === 'true'
 	);
+
+	/**
+	 * Handles toggling the favorite state when the icon is clicked.
+	 *
+	 * @param {React.MouseEvent<SVGSVGElement>} event - The mouse event triggered by clicking the icon.
+	 */
 
 	const handleIsActive = (event: React.MouseEvent<SVGSVGElement>) => {
 		event.preventDefault();
