@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import useProduct from '../hooks/useProduct.ts';
-import Container from '@/shared/container/container.tsx';
 import { AnimatePresence } from 'framer-motion';
 import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
@@ -31,7 +30,7 @@ const Product: FC = (): JSX.Element => {
 	);
 
 	return (
-		<Container>
+		<>
 			<AnimatePresence>
 				{loading && (
 					<div className='w-full h-full absolute top-0 left-0 flex justify-center items-center'>
@@ -43,7 +42,7 @@ const Product: FC = (): JSX.Element => {
 			</AnimatePresence>
 
 			{product && !loading && (
-				<div className='flex justify-center'>
+				<div className='w-full h-full top-0 left-0 absolute flex justify-center items-center px-6'>
 					<FadeView>
 						<div className='relative'>
 							{isActive && (
@@ -62,7 +61,7 @@ const Product: FC = (): JSX.Element => {
 					</FadeView>
 				</div>
 			)}
-		</Container>
+		</>
 	);
 };
 
