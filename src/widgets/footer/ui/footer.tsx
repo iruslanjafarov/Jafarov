@@ -7,7 +7,6 @@ import GooglePay from '../assets/google.svg';
 import Mir from '../assets/mir.svg';
 import Visa from '../assets/visa.svg';
 import MasterCard from '../assets/mastercard.svg';
-import FadeView from '@/shared/fadeView/fadeView';
 
 /**
  * Footer Component
@@ -55,26 +54,24 @@ const Footer = (): JSX.Element | null => {
 	return (
 		<footer>
 			<Container>
-				<FadeView>
-					<div className='h-[200px] flex flex-col justify-between bg-black text-white mx-3 my-6 p-6 rounded-lg'>
-						<div className='items-center'>
-							<div className='text-zinc-500 font-bold uppercase'>
-								Payment methods
-							</div>
-							<div className='flex gap-3 mt-3 h-[30px]'>
-								{Logos.map(({ src, alt }, idx) => (
-									<Logo src={src} alt={alt} key={idx} />
-								))}
-							</div>
+				<div className='h-[200px] flex flex-col justify-between bg-black text-white mx-3 my-6 p-6 rounded-lg'>
+					<div className='items-center'>
+						<div className='text-zinc-500 font-bold uppercase'>
+							Payment methods
 						</div>
-						<div className='flex flex-col gap-3'>
-							<hr className='h-[1px] border-t-0 bg-gray-300/25' />
-							<h2 className='text-zinc-600 font-bold uppercase tracking-tight text-sm'>
-								{`© ${new Date().getFullYear()} Ruslan Jafarov`}
-							</h2>
+						<div className='flex gap-3 mt-3 h-[30px]'>
+							{Logos.map(({ src, alt }, idx) => (
+								<Logo src={src} alt={alt} key={idx} />
+							))}
 						</div>
 					</div>
-				</FadeView>
+					<div className='flex flex-col gap-3'>
+						<hr className='h-[1px] border-t-0 bg-gray-300/25' />
+						<h2 className='text-zinc-600 font-bold uppercase tracking-tight text-sm'>
+							{`© ${new Date().getFullYear()} Ruslan Jafarov`}
+						</h2>
+					</div>
+				</div>
 			</Container>
 		</footer>
 	);
