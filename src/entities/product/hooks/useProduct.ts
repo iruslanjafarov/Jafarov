@@ -53,7 +53,6 @@ const useProduct = (): IUseProduct => {
 		}
 	}, [id, setProduct]);
 
-	// Trigger the fetch on component mount or when the ID changes.
 	useEffect(() => {
 		fetchProducts();
 	}, [fetchProducts]);

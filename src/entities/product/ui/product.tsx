@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import useProduct from '../hooks/useProduct.ts';
-import Container from '@/shared/container/container.tsx';
 import { AnimatePresence } from 'framer-motion';
 import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
 import { useStore } from '@/app/providers/store.ts';
+import { useParams } from 'react-router';
+import Favorite from '@/features/favorite/ui/favorite.tsx';
 
 /**
  * Product
@@ -24,8 +25,11 @@ const Product: FC = (): JSX.Element => {
 	const { loading } = useProduct();
 	const { path, name, price } = product || {};
 
+	const { id } = useParams();
+	const conditionalId = id ? +id : undefined;
+
 	return (
-		<Container>
+		<>
 			<AnimatePresence>
 				{loading && (
 					<div className='w-full h-full absolute top-0 left-0 flex justify-center items-center'>
@@ -37,21 +41,26 @@ const Product: FC = (): JSX.Element => {
 			</AnimatePresence>
 
 			{product && !loading && (
-				<div className='flex justify-center'>
+				<div className='w-full h-full top-0 left-0 absolute flex justify-center items-center px-6'>
 					<FadeView>
-						<img
-							src={path}
-							alt={name}
-							className='w-full lg:w-auto lg:max-w-full h-auto mt-6 rounded-lg'
-						/>
+						<div className='relative'>
+							<img
+								src={path}
+								alt={name}
+								className='w-full lg:w-auto lg:max-w-full h-auto mt-6 rounded-lg'
+							/>
+						</div>
 						<div className='flex justify-between mt-6'>
-							<h2 className='text-xl truncate'>{name}</h2>
+							<div className='relative flex gap-3'>
+								<h2 className='text-xl truncate'>{name}</h2>
+								<Favorite id={conditionalId} />
+							</div>
 							<h3 className='text-xl text-gray-400 text-nowrap'>{price} ₽</h3>
 						</div>
 					</FadeView>
 				</div>
 			)}
-		</Container>
+		</>
 	);
 };
 

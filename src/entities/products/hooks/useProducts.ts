@@ -28,6 +28,7 @@ const useProducts = (): IUseProducts => {
 	 *
 	 * @async
 	 */
+  
 	const fetchProducts = useCallback(async () => {
 		try {
 			setLoading(true);
