@@ -6,6 +6,7 @@ import Spinner from '@/shared/spinner/spinner.tsx';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
 import { useStore } from '@/app/providers/store.ts';
 import { useParams } from 'react-router';
+import Favorite from '@/features/favorite/ui/favorite.tsx';
 
 /**
  * Product
@@ -25,9 +26,7 @@ const Product: FC = (): JSX.Element => {
 	const { path, name, price } = product || {};
 
 	const { id } = useParams();
-	const isActive = JSON.parse(
-		localStorage.getItem(`product/${id}/favorite`) || 'false'
-	);
+	const conditionalId = id ? +id : undefined;
 
 	return (
 		<>
@@ -45,9 +44,6 @@ const Product: FC = (): JSX.Element => {
 				<div className='w-full h-full top-0 left-0 absolute flex justify-center items-center px-6'>
 					<FadeView>
 						<div className='relative'>
-							{isActive && (
-								<div className='absolute -top-2 -left-2 bg-red-500 w-5 h-5 rounded-full'></div>
-							)}
 							<img
 								src={path}
 								alt={name}
@@ -55,7 +51,10 @@ const Product: FC = (): JSX.Element => {
 							/>
 						</div>
 						<div className='flex justify-between mt-6'>
-							<h2 className='text-xl truncate'>{name}</h2>
+							<div className='relative flex gap-3'>
+								<h2 className='text-xl truncate'>{name}</h2>
+								<Favorite id={conditionalId} />
+							</div>
 							<h3 className='text-xl text-gray-400 text-nowrap'>{price} ₽</h3>
 						</div>
 					</FadeView>

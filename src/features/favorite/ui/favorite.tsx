@@ -5,12 +5,15 @@ import { HeartIcon } from '@heroicons/react/24/solid';
 /**
  * Favorite component for toggling the favorite state of a product.
  *
+ * This component allows users to mark a product as a favorite by clicking the heart icon.
+ * The favorite state is persisted in localStorage using the product ID as a key.
+ *
  * @param {Object} props - The component props.
- * @param {number} props.id - The unique identifier of the product.
- * @returns {JSX.Element} The Favorite component.
+ * @param {number} [props.id] - The unique identifier of the product. Optional.
+ * @returns {JSX.Element} The rendered Favorite component.
  */
 
-const Favorite = ({ id }: { id: number }): JSX.Element => {
+const Favorite = ({ id }: { id?: number }): JSX.Element => {
 	const [isActive, setIsActive] = useState<boolean>(
 		localStorage.getItem(`product/${id}/favorite`) === 'true'
 	);
