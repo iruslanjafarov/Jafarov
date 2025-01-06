@@ -45,7 +45,7 @@ const Header: FC = (): JSX.Element => {
 
 	return (
 		<>
-			<div className='h-[94px]' aria-hidden='true'></div>
+			<div className='h-[94px]'></div>
 			<motion.header
 				initial={{ y: 0 }}
 				animate={{ y: showHeader ? 0 : '-100%' }}
@@ -61,9 +61,9 @@ const Header: FC = (): JSX.Element => {
 						<Link to={'/'}>
 							<img src={Logo} alt='logo' className='w-[70px] h-[70px]' />
 						</Link>
-						<Link to={'/cart'}>
+						{/*<Link to={'/cart'}>
 							<ShoppingCartIcon className='w-[36px] h-[36px]' />
-						</Link>
+						</Link>*/}
 					</nav>
 				</Container>
 			</motion.header>
