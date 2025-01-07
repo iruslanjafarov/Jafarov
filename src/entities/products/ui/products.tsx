@@ -49,8 +49,8 @@ const Products: FC = (): JSX.Element => {
 									className='w-full sm:w-[300px] md:w-[450px] h-auto mt-6 rounded-lg'
 									loading='lazy'
 								/>
-								<div className='my-4'>
-									<Separator container={false} />
+								<div className='mt-4 mb-2.5'>
+									<Separator color={'bg-gray-200'} container={false} />
 								</div>
 								<div className='flex justify-between items-center'>
 									<div className='flex flex-col'>
