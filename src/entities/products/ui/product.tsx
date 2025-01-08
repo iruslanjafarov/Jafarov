@@ -27,9 +27,9 @@ const Product: FC<IProduct> = ({ id, path, name, price }) => {
 						{onItemHover && (
 							<motion.div
 								className='absolute top-8 right-2'
-								initial={{ opacity: 0 }} // начальное состояние - скрыто
-								animate={{ opacity: onItemHover ? 1 : 0 }} // плавное изменение opacity
-								transition={{ duration: 0.3 }} // длительность анимации
+								initial={{ opacity: 0 }}
+								animate={{ opacity: onItemHover ? 1 : 0 }}
+								transition={{ duration: 0.3 }}
 							>
 								<Favorite id={id} />
 							</motion.div>
