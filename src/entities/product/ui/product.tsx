@@ -6,7 +6,7 @@ import Spinner from '@/shared/spinner/spinner.tsx';
 import FadeView from '@/shared/fadeView/fadeView.tsx';
 import { useStore } from '@/app/providers/store.ts';
 import { useParams } from 'react-router';
-import Favorite from '@/features/favorite/ui/favorite.tsx';
+import DetailFavorite from '@/features/detailFavorite/ui/detailFavorite.tsx';
 
 /**
  * Product
@@ -32,7 +32,7 @@ const Product: FC = (): JSX.Element => {
 		<>
 			<AnimatePresence>
 				{loading && (
-					<div className='w-full h-full absolute top-0 left-0 flex justify-center items-center'>
+					<div className='w-full h-full absolute inset-0 flex justify-center items-center'>
 						<TransitionView>
 							<Spinner />
 						</TransitionView>
@@ -41,21 +41,23 @@ const Product: FC = (): JSX.Element => {
 			</AnimatePresence>
 
 			{product && !loading && (
-				<div className='w-full h-full top-0 left-0 absolute flex justify-center items-center px-6'>
+				<div className='w-full h-full inset-0 absolute flex justify-center items-center px-6'>
 					<FadeView>
 						<div className='relative'>
 							<img
 								src={path}
 								alt={name}
-								className='w-full lg:w-auto lg:max-w-full h-auto mt-6 rounded-lg'
+								className='w-full max-w-[500px] h-auto mt-6 rounded-lg'
 							/>
 						</div>
 						<div className='flex justify-between mt-6'>
-							<div className='relative flex gap-3'>
+							<div className='flex flex-col'>
 								<h2 className='text-xl truncate'>{name}</h2>
-								<Favorite id={conditionalId} />
+								<h3 className='text-xl text-gray-400 text-nowrap'>{price} ₽</h3>
 							</div>
-							<h3 className='text-xl text-gray-400 text-nowrap'>{price} ₽</h3>
+							<div className='w-fit'>
+								<DetailFavorite id={conditionalId} />
+							</div>
 						</div>
 					</FadeView>
 				</div>

@@ -1,13 +1,16 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useStore } from '@/app/providers/store';
 import useProducts from '@/entities/products/hooks/useProducts.ts';
 import Container from '@/shared/container/container.tsx';
 import { AnimatePresence } from 'framer-motion';
 import TransitionView from '@/shared/transitionView/transitionView.tsx';
 import Spinner from '@/shared/spinner/spinner.tsx';
+import { IProduct } from '../model/types/products';
 import { Link } from 'react-router';
-import FadeView from '@/shared/fadeView/fadeView.tsx';
+import FadeView from '@/shared/fadeView/fadeView';
+import { motion } from 'framer-motion';
 import Favorite from '@/features/favorite/ui/favorite';
+import Separator from '@/shared/separator/separator';
 
 /**
  * Product
@@ -39,23 +42,7 @@ const Products: FC = (): JSX.Element => {
 
 			<div className='flex flex-wrap items-center justify-evenly'>
 				{products.map(({ id, path, name, price }) => (
-					<Link key={id} to={`/detail/${id}`}>
-						<FadeView className='mb-6'>
-							<img
-								src={path}
-								alt={name}
-								className='w-full sm:w-[300px] md:w-[450px] h-auto mt-6 rounded-lg'
-								loading='lazy'
-							/>
-							<div className='flex justify-between items-center'>
-								<div className='mt-3'>
-									<h2>{name}</h2>
-									<h3 className='text-gray-400'>{price} ₽</h3>
-								</div>
-								<Favorite id={id} />
-							</div>
-						</FadeView>
-					</Link>
+					<ViewProduct id={id} path={path} name={name} price={price} />
 				))}
 			</div>
 		</Container>
@@ -63,3 +50,46 @@ const Products: FC = (): JSX.Element => {
 };
 
 export default Products;
+
+const ViewProduct: FC<IProduct> = ({ id, path, name, price }) => {
+	const [onItemHover, setOnItemHover] = useState<boolean>(false);
+
+	return (
+		<Link key={id} to={`/detail/${id}`}>
+			<FadeView className='mb-6'>
+				<div className='flex flex-col'>
+					<div
+						className='relative'
+						onMouseEnter={() => setOnItemHover(true)}
+						onMouseLeave={() => setOnItemHover(false)}
+					>
+						<img
+							src={path}
+							alt={name}
+							className='w-full sm:w-[300px] md:w-[450px] h-auto mt-6 rounded-lg'
+							loading='lazy'
+						/>
+						{onItemHover && (
+							<motion.div
+								className='absolute top-8 right-2'
+								initial={{ opacity: 0 }}
+								animate={{ opacity: onItemHover ? 1 : 0 }}
+								transition={{ duration: 0.3 }}
+							>
+								<Favorite id={id} />
+							</motion.div>
+						)}
+					</div>
+
+					<div className='mt-4 mb-2.5'>
+						<Separator color={'bg-gray-200'} container={false} />
+					</div>
+					<div className='flex justify-between items-center'>
+						<h2>{name}</h2>
+						<h3 className='text-gray-400'>{price} ₽</h3>
+					</div>
+				</div>
+			</FadeView>
+		</Link>
+	);
+};
