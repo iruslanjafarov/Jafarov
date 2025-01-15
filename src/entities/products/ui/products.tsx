@@ -42,7 +42,7 @@ const Products: FC = (): JSX.Element => {
 
 			<div className='flex flex-wrap items-center justify-evenly'>
 				{products.map(({ id, path, name, price }) => (
-					<ViewProduct id={id} path={path} name={name} price={price} />
+					<ViewProduct id={id} path={path} name={name} price={price} key={id} />
 				))}
 			</div>
 		</Container>
